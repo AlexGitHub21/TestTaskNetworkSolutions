@@ -30,46 +30,6 @@ class TicketService:
             sort_by,
             order,)
 
-    # async def get_tickets_by_priority(self, priority: str) -> list[BaseTicket]:
-    #     return await self.manager.get_tickets_by_priority(priority)
-    #
-    # async def get_tickets_by_status(self, status_ticket: str) -> list[BaseTicket]:
-    #     return await self.manager.get_tickets_by_status(status_ticket)
-
-    # async def get_tickets_by_desc(self, desc: str) -> BaseTicket:
-    #     ticket = await self.manager.get_tickets_by_desc(desc)
-    #
-    #     if ticket is None:
-    #         raise HTTPException(
-    #             status_code=status.HTTP_404_NOT_FOUND,
-    #             detail=f"Не найдена заявка с таким описанием: {desc}",
-    #         )
-    #     return BaseTicket.model_validate(ticket)
-    #
-    # async def get_tickets_by_title(self, title: str) -> BaseTicket:
-    #     ticket = await self.manager.get_tickets_by_title(title)
-    #
-    #     if ticket is None:
-    #         raise HTTPException(
-    #             status_code=status.HTTP_404_NOT_FOUND,
-    #             detail=f"Не найдена заявка с таким заголовком: {title}",
-    #         )
-    #     return BaseTicket.model_validate(ticket)
-
-    async def get_sorted_tickets(self, sort_by: str, order: str) -> list[TicketResponse]:
-
-        if order not in ("asc", "desc"):
-            raise HTTPException(
-                status_code=400,
-                detail="Параметр order должен быть 'asc' или 'desc'"
-            )
-        if sort_by not in ("created_at", "priority"):
-            raise HTTPException(
-                status_code=400,
-                detail="Параметр sort_by должен быть 'created_at' или 'priority'"
-            )
-        return await self.manager.get_all_sorted_tickets(sort_by, order)
-
 
     async def update_status(self, ticket_id: int, status_ticket: str) -> TicketUpdate:
         ticket = await self.manager.get_ticket(ticket_id)

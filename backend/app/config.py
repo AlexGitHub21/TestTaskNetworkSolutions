@@ -23,8 +23,6 @@ class DBSettings(BaseSettings):
 class Settings(BaseSettings):
     secret_key: SecretStr
     templates_dir: str = "app/templates"
-    # frontend_url: str
-    # access_token_expire: int
 
     model_config = SettingsConfigDict(
         env_file=".env",

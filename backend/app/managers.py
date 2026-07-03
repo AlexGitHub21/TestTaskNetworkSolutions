@@ -75,62 +75,6 @@ class TicketManager:
 
         return [TicketResponse.model_validate(ticket) for ticket in tickets]
 
-    # async def get_tickets_by_priority(self, priority: str) -> list[BaseTicket]:
-    #     query = select(self.model).where(self.model.priority == priority)
-    #
-    #     result = await self.db_session.execute(query)
-    #     tickets = result.scalars().all()
-    #
-    #     return [BaseTicket.model_validate(ticket) for ticket in tickets]
-    #
-    # async def get_tickets_by_status(self, status: str) -> list[BaseTicket]:
-    #     query = select(self.model).where(self.model.status == status)
-    #
-    #     result = await self.db_session.execute(query)
-    #     tickets = result.scalars().all()
-    #
-    #     return [BaseTicket.model_validate(ticket) for ticket in tickets]
-
-    # async def get_tickets_by_desc(self, desc: str) -> BaseTicket:
-    #     query = select(self.model).where(self.model.description == desc)
-    #
-    #     result = await self.db_session.execute(query)
-    #     ticket = result.scalars().one_or_none()
-    #     return ticket
-    #
-    # async def get_tickets_by_title(self, title: str) -> BaseTicket:
-    #     query = select(self.model).where(self.model.title == title)
-    #
-    #     result = await self.db_session.execute(query)
-    #     ticket = result.scalars().one_or_none()
-    #     return ticket
-
-
-    # async def get_all_sorted_tickets(self, sort_by: str, order: str) -> list[TicketResponse]:
-    #
-    #     query = select(self.model)
-    #
-    #     if sort_by == "created_at":
-    #         column = self.model.created_at
-    #     elif sort_by == "priority":
-    #         column = case(
-    #             (self.model.priority == TicketPriority.LOW, 1),
-    #             (self.model.priority == TicketPriority.NORMAL, 2),
-    #             (self.model.priority == TicketPriority.HIGH, 3),
-    #         )
-    #     else:
-    #         raise ValueError("Invalid sort field")
-    #
-    #     if order == "desc":
-    #         query = query.order_by(desc(column))
-    #
-    #     else:
-    #         query = query.order_by(asc(column))
-    #
-    #     result = await self.db_session.execute(query)
-    #     tickets = result.scalars().all()
-    #     return [TicketResponse.model_validate(ticket) for ticket in tickets]
-
     async def get_ticket(self, ticket_id: int) -> TicketUpdate:
         query = select(self.model).where(self.model.id == ticket_id)
 

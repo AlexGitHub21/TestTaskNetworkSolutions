@@ -39,45 +39,6 @@ async def get_all_tickets(
         sort_by=sort_by,
         order=order,
     )
-#
-# @ticket_router.get(
-#     path="/priority/{priority}",
-#     response_model=list[BaseTicket],
-#     status_code=status.HTTP_200_OK
-# )
-# async def get_tickets_by_priority(priority: str, service: TicketService = Depends(TicketService)) -> list[BaseTicket]:
-#     return await service.get_tickets_by_priority(priority=priority)
-#
-# @ticket_router.get(
-#     path="/status/{status}",
-#     response_model=list[BaseTicket],
-#     status_code=status.HTTP_200_OK
-# )
-# async def get_tickets_by_status(status_ticket: str, service: TicketService = Depends(TicketService)) -> list[BaseTicket]:
-#     return await service.get_tickets_by_status(status_ticket)
-
-
-# @ticket_router.get(
-#     path="/desc/{description}",
-#     response_model=BaseTicket
-# )
-# async def get_ticket_by_description(description: str, service: TicketService = Depends(TicketService)):
-#     return await service.get_tickets_by_desc(description)
-#
-#
-# @ticket_router.get(
-#     path="/title/{title}",
-#     response_model=BaseTicket
-# )
-# async def get_ticket_by_title(title: str, service: TicketService = Depends(TicketService)):
-#     return await service.get_tickets_by_title(title)
-
-@ticket_router.get(
-    path="/sorted_tickets",
-    response_model=list[TicketResponse]
-)
-async def get_sorted_tickets(sort_by: str = "created_at", order: str = "asc", service: TicketService = Depends(TicketService)):
-    return await service.get_sorted_tickets(sort_by=sort_by, order=order)
 
 @ticket_router.patch(
     path="/{ticket_id}/status",
