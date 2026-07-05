@@ -195,142 +195,104 @@ function MainPage() {
         </div>
 
         {isLoginOpen && (
-            <div
-                style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: "rgba(0,0,0,0.5)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                }}
-            >
-            <div
-                style={{
-                background: "white",
-                padding: 20,
-                borderRadius: 8,
-                width: 300,
-                }}
-            >
-        <h3>Вход администратора</h3>
+            <div className="modal-login-overlay">
+                <div className="modal-login-window">
+                    <h3>Вход администратора</h3>
 
-            <p><input
-                placeholder="username"
-                value={loginForm.username}
-                onChange={(e) =>
-                  setLoginForm({ ...loginForm, username: e.target.value })
-                }
-            /></p>
+                    <p><input
+                        placeholder="username"
+                        value={loginForm.username}
+                        onChange={(e) =>
+                          setLoginForm({ ...loginForm, username: e.target.value })
+                        }
+                    /></p>
 
-            <p><input
-                placeholder="password"
-                type="password"
-                value={loginForm.password}
-                onChange={(e) =>
-                  setLoginForm({ ...loginForm, password: e.target.value })
-                }
-            /></p>
+                    <p><input
+                        placeholder="password"
+                        type="password"
+                        value={loginForm.password}
+                        onChange={(e) =>
+                          setLoginForm({ ...loginForm, password: e.target.value })
+                        }
+                    /></p>
 
-            <p><button
-                onClick={async () => {
-                  await loginAdmin(loginForm);
+                    <p><button
+                        onClick={async () => {
+                          await loginAdmin(loginForm);
 
-                  setLoginForm ({
-                      username: "",
-                      password: "",
-                  });
+                          setLoginForm ({
+                              username: "",
+                              password: "",
+                          });
 
-                  setIsLoginOpen(false);
-                }}
-                >
-                Войти
-            </button></p>
+                          setIsLoginOpen(false);
+                        }}
+                        >
+                        Войти
+                    </button></p>
 
-            <p><button onClick={() => setIsLoginOpen(false)}>
-                Закрыть
-            </button></p>
+                    <p><button onClick={() => setIsLoginOpen(false)}>
+                        Закрыть
+                    </button></p>
+                </div>
             </div>
-        </div>
-        )}
+            )}
 
         {isCreateOpen && (
-            <div
-                style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: "rgba(0,0,0,0.5)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                }}
-            >
-            <div
-                style={{
-                background: "white",
-                padding: 20,
-                borderRadius: 8,
-                width: 300,
-                }}
-            >
-        <h3>Создание заявки</h3>
+            <div className="modal-create-overlay">
+                <div className="modal-create-window">
+                    <h3>Создание заявки</h3>
 
-            <p><input
-                placeholder="title"
-                value={createTicketForm.title}
-                onChange={(e) =>
-                  setCreateTicketForm({ ...createTicketForm, title: e.target.value })
-                }
-            /></p>
+                    <p><input
+                        placeholder="title"
+                        value={createTicketForm.title}
+                        onChange={(e) =>
+                          setCreateTicketForm({ ...createTicketForm, title: e.target.value })
+                        }
+                    /></p>
 
-            <p><input
-                placeholder="description"
-                value={createTicketForm.description}
-                onChange={(e) =>
-                  setCreateTicketForm({ ...createTicketForm, description: e.target.value })
-                }
-            /></p>
-            <p><select
-                placeholder="priority"
-                value={createTicketForm.priority}
-                onChange={(e) =>
-                  setCreateTicketForm({ ...createTicketForm, priority: e.target.value })
-                }
-            >
-                <option value="">Выберите приоритет</option>
-                <option value="low">Low</option>
-                <option value="normal">Normal</option>
-                <option value="high">High</option>
-            </select>
-            </p>
+                    <p><input
+                        placeholder="description"
+                        value={createTicketForm.description}
+                        onChange={(e) =>
+                          setCreateTicketForm({ ...createTicketForm, description: e.target.value })
+                        }
+                    /></p>
+                    <p><select
+                        placeholder="priority"
+                        value={createTicketForm.priority}
+                        onChange={(e) =>
+                          setCreateTicketForm({ ...createTicketForm, priority: e.target.value })
+                        }
+                    >
+                        <option value="">Выберите приоритет</option>
+                        <option value="low">Low</option>
+                        <option value="normal">Normal</option>
+                        <option value="high">High</option>
+                    </select>
+                    </p>
 
-            <p><button
-                onClick={async () => {
-                  await createTicket(createTicketForm);
-                  await loadTickets();
+                    <p><button
+                        onClick={async () => {
+                          await createTicket(createTicketForm);
+                          await loadTickets();
 
-                  setCreateTicketForm({
-                    title: "",
-                    description: "",
-                    priority: "",
-                  });
-                  setIsCreateOpen(false);
-                }}
-                >
-                Создать
-            </button></p>
+                          setCreateTicketForm({
+                            title: "",
+                            description: "",
+                            priority: "",
+                          });
+                          setIsCreateOpen(false);
+                        }}
+                        >
+                        Создать
+                    </button></p>
 
-            <p><button onClick={() => setIsCreateOpen(false)}>
-                Закрыть
-            </button></p>
-        </div>
-        </div>
+                    <p><button onClick={() => setIsCreateOpen(false)}>
+                        Закрыть
+                    </button></p>
+                </div>
+            </div>
         )}
       </>
     );
